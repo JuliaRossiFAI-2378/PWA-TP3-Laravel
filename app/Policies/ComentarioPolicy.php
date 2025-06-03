@@ -37,7 +37,7 @@ class ComentarioPolicy
      */
     public function update(User $user, Comentario $comentario): bool
     {
-        return $user->id === $comentario->user_id;;
+        return $user->id === $comentario->user;;
     }
 
     /**
@@ -45,7 +45,7 @@ class ComentarioPolicy
      */
     public function delete(User $user, Comentario $comentario): bool
     {
-        return $user->id === $comentario->user_id;;
+        return $user->id === $comentario->user;;
     }
 
     /**

@@ -2,7 +2,7 @@
 
 @section('mensaje')
 @if((session('error')))
-<div class="bg-blue-900 p-6 text-white" >
+<div class="bg-[#33CCBB] p-6 text-white rounded-xl font-bold text-xl mb-6" >
 <p>{{{session('error')}}}<p>
 </div>
 @endif

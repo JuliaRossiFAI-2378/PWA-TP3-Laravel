@@ -23,7 +23,7 @@
                           <x-boton href="{{ route('login') }}" class="text-black font-bold h-12 bg-[#FFBBCC] hover:bg-[#DE4444] transition ease-in-out transform hover:translate-y-1 duration-200" >
                             {{__('Login')}}
                           </x-boton>
-                          <x-boton href="{{ route('register') }}" class="text-black font-bold h-12 bg-[#FFEE11]  transition transform ease-in-out hover:translate-y-1 duration-200 " >
+                          <x-boton href="{{ route('register') }}" class="text-black font-bold h-12 bg-[#FFEE11] hover:bg-[#FFCC11] transition transform ease-in-out hover:translate-y-1 duration-200 " >
                             {{__('crear cuenta')}}
                           </x-boton>
                         @endguest
@@ -84,9 +84,8 @@
                         @endauth
                 </nav>
         </header>
-        <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
-            <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-none lg:px-20 ">
-                <div id="content" class=" text-black">
+        <div class="flex items-center justify-center w-full lg:grow">
+            <main class="flex max-w-[335px] w-full flex-col lg:max-w-none lg:px-20 ">
                 <div >
                   @yield('mensaje')
                 </div>
@@ -96,7 +95,7 @@
                   @yield('content')
                 </div>
             </main>
-        </div>
+
         <div class="h-14.5 hidden lg:block"></div>
      <footer class="bg-[#DE4444] text-white py-3 w-full mx-auto px-4">
       <div class="px-4">
