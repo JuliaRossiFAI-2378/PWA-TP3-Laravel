@@ -46,7 +46,7 @@
                             <x-dropdown-link href="{{route('index', ['category' => 'LeoNeed'])}}" class="bg-[#4455DD] hover:bg-cyan-500  font-bold" >
                               Leo/Need
                             </x-dropdown-link>
-                            <x-dropdown-link href="{{route('index', ['category' => 'MoreMoreJump'])}}" class="bg-[#88DD44] hover:bg-cyan-500 font-bold" >
+                            <x-dropdown-link href="{{route('index', ['category' => 'MoreMoreJump!'])}}" class="bg-[#88DD44] hover:bg-cyan-500 font-bold" >
                               MORE MORE JUMP!
                             </x-dropdown-link>
                             <x-dropdown-link href="{{route('index', ['category' => 'VividBADSQUAD'])}}" class="bg-[#EE1166] hover:bg-cyan-500 font-bold " >
@@ -87,7 +87,7 @@
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-none lg:px-20 ">
                 <div id="content" class=" text-black">
-                <div>
+                <div >
                   @yield('mensaje')
                 </div>
                 <h1 class="font-bold text-4xl mb-6" >

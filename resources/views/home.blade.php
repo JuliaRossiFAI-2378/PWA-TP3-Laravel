@@ -1,8 +1,10 @@
 @extends('layouts/base')
 
 @section('mensaje')
-@if(isset($error))
-<p>{{{$error}}}<p>
+@if((session('error')))
+<div class="bg-blue-900 p-6 text-white" >
+<p>{{{session('error')}}}<p>
+</div>
 @endif
 @endsection
 @section('subtitle')

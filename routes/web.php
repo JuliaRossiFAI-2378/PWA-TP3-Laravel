@@ -27,8 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/{category?}/edit/{id?}', [CategoryController::class, 'getEdit'])->name('edit');
     //envia los datos del post y los sube a la DB
-Route::post('post/create', [CategoryController::class, 'createPost'])->name('createPost');
-Route::get('/{category?}/create', [CategoryController::class, 'getCreate'])->name('create');
+    Route::post('post/create', [CategoryController::class, 'createPost'])->name('createPost');
+    Route::get('/{category?}/create', [CategoryController::class, 'getCreate'])->name('create');
 });
 
 

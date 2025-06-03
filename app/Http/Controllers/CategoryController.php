@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Comentario;
 use App\Models\Post;
+use App\Http\Controllers\HomeController;
 
 class CategoryController extends Controller
 {
@@ -73,7 +74,7 @@ class CategoryController extends Controller
             $listaPosts = $this->getPostsByCategoria($category->id);
             return view('category/index', ['category' => $category->name, 'posts' => $listaPosts]);
         }
-        return redirect()->route('home', ['error' => 'No tenemos esa categoria!']);
+        return redirect('/')->with('error', 'No tenemos esa categoria!');
     }
     public function getShow($category=null, $id=null){
         $category = $this->getCategory($category);
@@ -83,7 +84,7 @@ class CategoryController extends Controller
             $coments = $this->getComentarios($post->id);
             return view('category/show', ['user'=>$user, 'category' => $category->name, 'post' => $post , 'coments' => $coments]);
         }
-        return redirect()->route('home', ['error' => 'No tenemos esa categoria!']);
+        return redirect('/')->with('error', 'No tenemos esa categoria!');
     }
     public function getEdit($category=null, $id=null){
         $category = $this->getCategory($category);
@@ -92,11 +93,11 @@ class CategoryController extends Controller
             try {
                 $this->authorize('update', $post);
             } catch (AuthorizationException) {
-                return redirect()->route('home', ['error'=>'no se']);
+                return redirect('/')->with('error', 'msj');
             }
             return view('category/edit', ['category' => $category->name, 'post' => $post]);
         }
-        return view('category/edit', ['error' => 'msj']);
+        return redirect('/')->with('error', 'msj');
     }
 
     public function getPostCreate(){
@@ -107,7 +108,7 @@ class CategoryController extends Controller
         if($category){
             return view('category/create', ['category' => $category->name]);
         }
-        return view('category/create', ['msj' => 'edit']);
+        return redirect('/')->with('error', 'No tenemos esa categoria!');
     }
     public function createPost(Request $request){
         Post::create([
