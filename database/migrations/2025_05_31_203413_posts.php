@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('content');
             $table->boolean('habilitated')->default(true);
             $table->string('imageLink')->default('https://somoskudasai.com/wp-content/uploads/2021/09/project-sekai-anime-kudasai.jpg');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user')->constrained()->onDelete('cascade');
+            $table->foreignId('category')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

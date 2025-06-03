@@ -12,9 +12,9 @@ class HomeController extends Controller
         $ultimosPost = [];
         $temp = Post::where('habilitated', 1)->orderBy('created_at')->take(5)->get();
         for($i=0;$i<count($temp);$i++){
-            $nombre = Category::where('id', $temp[$i]->category_id)->first();
+            $nombre = Category::where('id', $temp[$i]->category)->first();
             $nombre = $nombre->name;
-            $ultimosPost[$i] = ["categoria" => $nombre, "post" => $temp[$i]];
+            $ultimosPost[$i] = ["categoria" => str_replace(' ', '', $nombre), "post" => $temp[$i]];
         }
         if($error){
             return view('home', ['posts' => $ultimosPost, 'error'=>$error]);

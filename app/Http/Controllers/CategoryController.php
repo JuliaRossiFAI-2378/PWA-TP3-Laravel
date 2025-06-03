@@ -18,15 +18,10 @@ class CategoryController extends Controller
         $category = '';
         foreach($dbCategories as $dbCategory){
             if(strcasecmp(str_replace(' ', '', $dbCategory['name']), $categoryName) == 0){
-                $category = $dbCategory['name'];
+                $category = $dbCategory;
             }
         }
-        try{
-            $foundCategory = Category::where('name', $category)->firstOrFail();
-        } catch (ModelNotFoundException){
-            return null;
-        }
-        return $foundCategory;
+        return $category;
     }
     public function getCategories(){
         $listaCategorias = Category::all();
@@ -40,7 +35,7 @@ class CategoryController extends Controller
     public function getPost($categoria, $idPost){
         if($categoria){
             try {
-                $post = $categoria->posts()->where('id', $idPost)->firstOrFail();
+                $post = Post::where('id', $idPost)->firstOrFail();
             } catch(ModelNotFoundException){
                 return null;
             }
@@ -66,13 +61,13 @@ class CategoryController extends Controller
     }
 
     public function getPostsByCategoria($idCategoria){
-        return Post::where('category_id', $idCategoria)->get();
+        return Post::where('category', $idCategoria)->get();
     }
     public function getIndex($category=null){
         $category = $this->getCategory($category);
         if($category){
             $listaPosts = $this->getPostsByCategoria($category->id);
-            return view('category/index', ['category' => $category->name, 'posts' => $listaPosts]);
+            return view('category/index', ['category' => str_replace(' ', '', $category->name), 'posts' => $listaPosts]);
         }
         return redirect('/')->with('error', 'No tenemos esa categoria!');
     }
@@ -80,9 +75,9 @@ class CategoryController extends Controller
         $category = $this->getCategory($category);
         $post = $this->getPost($category, $id);
         if($post){
-            $user = $this->getUser($post->user_id);
+            $user = $this->getUser($post->user);
             $coments = $this->getComentarios($post->id);
-            return view('category/show', ['user'=>$user, 'category' => $category->name, 'post' => $post , 'coments' => $coments]);
+            return view('category/show', ['user'=>$user, 'category' => str_replace(' ', '', $category->name), 'post' => $post , 'coments' => $coments]);
         }
         return redirect('/')->with('error', 'No tenemos esa categoria!');
     }
@@ -118,6 +113,6 @@ class CategoryController extends Controller
             'category' => $request['category']
         ]);
         $category = $this->getCategoryById($request['category']);
-        return redirect()->route('category', ['category' => str_replace(' ', '', $category['name'])]);
+        return redirect()->route('index', ['category' => str_replace(' ', '', $category['name'])]);
     }
 }
