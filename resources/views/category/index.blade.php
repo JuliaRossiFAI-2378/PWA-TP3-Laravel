@@ -18,10 +18,14 @@
         </x-contenido-post>
     @endforeach
 @else
-        <p>no hay posts :(</p>
+        <div class="flex items-center justify-center min-h-96 w-full  text-center font-bold text-2xl">
+                <p class="bg-[#3366CC] rounded-xl p-6" >no hay posts :(</p>
+        </div>
 @endif
 @else
-        <h1>algo salio muy mal</h1>
+        <div class="flex items-center justify-center min-h-96 w-full  text-center font-bold text-2xl" >
+                <h1 class="bg-[#3366CC] rounded-xl p-6" >algo salio muy mal</h1>
+        </div>
 @endif
 </div>
 @endsection

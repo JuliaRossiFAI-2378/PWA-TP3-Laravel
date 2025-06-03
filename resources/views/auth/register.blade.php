@@ -2,11 +2,11 @@
 
 @section('content')
 @guest
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" class="bg-[#3366CC] rounded-xl p-6" >
         @csrf
 
         <!-- Name -->
-        <div>
+        <div >
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -47,7 +47,7 @@
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4 bg-[#33CCBB] hover:bg-cyan-500">
                 {{ __('Register') }}
             </x-primary-button>
         </div>

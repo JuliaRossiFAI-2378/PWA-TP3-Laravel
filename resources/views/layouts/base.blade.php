@@ -27,6 +27,31 @@
                             {{__('crear cuenta')}}
                           </x-boton>
                         @endguest
+                        @auth
+                          <x-boton href="{{ route('post') }}" class="text-black font-bold h-12 bg-[#FFBBCC] hover:bg-[#DE4444] transition ease-in-out transform hover:translate-y-1 duration-200"  >
+                            {{__('crear post')}}
+                          </x-boton>
+                            <x-dropdown align="right" width="48" class="mr-10">
+                                <x-slot name="trigger">
+                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 rounded-md text-black font-bold h-12 bg-[#FFEE11] hover:bg-[#FFCC11] transition transform ease-in-out hover:translate-y-1 duration-200">
+                                        <div>{{ Auth::user()->name }}</div>
+                                        <div class="ms-1">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                <div class="bg-cyan-500 py-1 rounded-md ring-1 ring-black ring-opacity-5">
+                                    <x-dropdown-link :href="route('profile.edit')" class="bg-[#3366CC] hover:bg-cyan-500 font-bold" >
+                                        {{ __('Profile') }}
+                                    </x-dropdown-link>
+                                    <x-logout class="bg-[#DE4444] hover:bg-cyan-500 font-bold" />
+                                    </div>
+                                </x-slot>
+                            </x-dropdown>
+                        @endauth
                         <x-dropdown class="mr-12" >
                           <x-slot name="trigger"  >
                             <button class="text-white bg-[#3366CC] hover:bg-[#33CCBB]  h-12 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md focus:outline-none ease-in-out transition transform hover:translate-y-1 duration-200" >
@@ -40,7 +65,7 @@
                           </x-slot >
                           <x-slot name="content"  >
                           <div class="bg-cyan-500 py-1 rounded-md ring-1 ring-black ring-opacity-5" >
-                            <x-dropdown-link href="{{route('index', ['category' => 'VirtualSingers'])}}" class="bg-[#00CCBB] hover:bg-cyan-500 font-bold" >
+                            <x-dropdown-link href="{{route('index', ['category' => 'VirtualSinger'])}}" class="bg-[#00CCBB] hover:bg-cyan-500 font-bold" >
                               VIRTUAL SINGER
                             </x-dropdown-link>
                             <x-dropdown-link href="{{route('index', ['category' => 'LeoNeed'])}}" class="bg-[#4455DD] hover:bg-cyan-500  font-bold" >
@@ -61,27 +86,7 @@
                             </div>
                           </x-slot>
                         </x-dropdown>
-                        
-                        @auth
-                            <x-dropdown align="right" width="48" class="mr-10">
-                                <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-50 bg-yellow-500 hover:bg-red-400 focus:outline-none transition ease-in-out duration-150">
-                                        <div>{{ Auth::user()->name }}</div>
-                                        <div class="ms-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                </x-slot>
-                                <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile.edit')">
-                                        {{ __('Profile') }}
-                                    </x-dropdown-link>
-                                    <x-logout/>
-                                </x-slot>
-                            </x-dropdown>
-                        @endauth
+                      
                 </nav>
         </header>
         <div class="flex items-center justify-center w-full lg:grow">
@@ -89,7 +94,7 @@
                 <div >
                   @yield('mensaje')
                 </div>
-                <h1 class="font-bold text-4xl mb-6" >
+                <h1 class="font-bold text-4xl mb-6 bg-cyan-500 rounded-xl p-4 text-center" >
                   @yield('subtitle')
                 </h1>
                   @yield('content')
