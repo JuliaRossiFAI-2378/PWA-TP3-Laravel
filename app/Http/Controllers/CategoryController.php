@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Comentario;
 use App\Models\Post;
 
 class CategoryController extends Controller
@@ -27,32 +27,87 @@ class CategoryController extends Controller
         }
         return $foundCategory;
     }
+    public function getCategories(){
+        $listaCategorias = Category::all();
+        return $listaCategorias;
+    }
     //para cuando tenemos el id de la categoria y necesitamos el nombre
     public function getCategoryById($id){
         $category = Category::where('id', $id)->firstOrFail();
         return $category;
     }
-    public function getIndex($category = null){
-        $view = view('category.index', ['posts' => Post::all()]);
-        if($category){
-            $dbCategory = $this->getCategory($category);
-            $view = view('category.index', ['posts' => Post::where('category', $dbCategory['id'])->get()]);
+    public function getPost($categoria, $idPost){
+        if($categoria){
+            try {
+                $post = $categoria->posts()->where('id', $idPost)->firstOrFail();
+            } catch(ModelNotFoundException){
+                return null;
+            }
+            return $post;
         }
-        return $view;
+        return null;
     }
-    public function getPost($category, $id){
-        $post = Post::findOrFail($id);
-        return view('category.show', ['post' => $post , 'user' => User::findOrFail($post['user'])]);
+    public function getUser($id){
+        $user = User::where('id',$id)->first();
+        if($user){
+            return $user->name;
+        }
+        return null;
     }
-    public function getEdit($editId){
-        return view('category.edit', ['category' => Category::findOrFail($editId)]);
+    public function getComentarios($idPost){//retorna array vacio si no encuentra
+        $result = [];
+        $comentarios = Comentario::where('post_id', $idPost)->get();
+        foreach($comentarios as $comentario){
+            $usuario=$this->getUser($comentario->user_id);
+            $result[] = ['comentario' => $comentario, 'usuario'=>$usuario];
+        }
+        return $result;
     }
+
+    public function getPostsByCategoria($idCategoria){
+        return Post::where('category_id', $idCategoria)->get();
+    }
+    public function getIndex($category=null){
+        $category = $this->getCategory($category);
+        if($category){
+            $listaPosts = $this->getPostsByCategoria($category->id);
+            return view('category/index', ['category' => $category->name, 'posts' => $listaPosts]);
+        }
+        return redirect()->route('home', ['error' => 'No tenemos esa categoria!']);
+    }
+    public function getShow($category=null, $id=null){
+        $category = $this->getCategory($category);
+        $post = $this->getPost($category, $id);
+        if($post){
+            $user = $this->getUser($post->user_id);
+            $coments = $this->getComentarios($post->id);
+            return view('category/show', ['user'=>$user, 'category' => $category->name, 'post' => $post , 'coments' => $coments]);
+        }
+        return redirect()->route('home', ['error' => 'No tenemos esa categoria!']);
+    }
+    public function getEdit($category=null, $id=null){
+        $category = $this->getCategory($category);
+        $post = $this->getPost($category, $id);
+        if($post){
+            try {
+                $this->authorize('update', $post);
+            } catch (AuthorizationException) {
+                return redirect()->route('home', ['error'=>'no se']);
+            }
+            return view('category/edit', ['category' => $category->name, 'post' => $post]);
+        }
+        return view('category/edit', ['error' => 'msj']);
+    }
+
     public function getPostCreate(){
-        return view('post.create', ['categories' => Category::all()]);
+        return view('post.create', ['categories' => $this->getCategories()]);
     }
-    public function getCreate($category){
-        $dbCategory = $this->getCategory($category);
-        return view('category.create', ['category' => Category::findOrFail($dbCategory['id'])]);
+    public function getCreate($category=null){
+        $category = $this->getCategory($category);
+        if($category){
+            return view('category/create', ['category' => $category->name]);
+        }
+        return view('category/create', ['msj' => 'edit']);
     }
     public function createPost(Request $request){
         Post::create([

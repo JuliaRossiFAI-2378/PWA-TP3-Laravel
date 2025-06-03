@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->foreignId('user')->constrained();
             $table->boolean('habilitated')->default(true);
-            $table->foreignId('category')->constrained();
+            $table->string('imageLink')->default('https://somoskudasai.com/wp-content/uploads/2021/09/project-sekai-anime-kudasai.jpg');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,15 +31,3 @@ return new class extends Migration
         Schema::dropIfExists('posts');
     }
 };
-/**Schema::create('posts', function (Blueprint $table) {
-            $table->id('postId');
-            $table->string('title');
-            $table->text('content');
-            $table->unsignedBigInteger('userId');
-            $table->boolean('habilitated')->default(false);
-            $table->unsignedBigInteger('categoryId');
-            $table->timestamps();
-
-            $table->foreign('userId')->references('userId')->on('users');
-            $table->foreign('categoryId')->references('categoryId')->on('categorys');
-        }); */

@@ -1,8 +1,27 @@
-@extends('layouts.header')
+@extends('layouts/base')
 
-@yield('header')
-<div class="container">
-    <p>user: {{$user['name']}}</p>
-</div>
-<p>title: {{$post['title']}}</p>
-<p>content: {{$post['content']}}</p>
+@section('content')
+    <div class="mx-16" >
+    @if(isset($category))
+    <x-vista-post :postImage="$post->imageLink" >     
+        <x-slot name="postTitle">
+            {{{$post->title}}}
+        </x-slot>
+        <x-slot name="postContent">
+            {{{ $post->content }}}
+        </x-slot>
+        <x-slot name="user">
+            {{{$user}}}
+        </x-slot>
+        <x-slot name="fecha" >
+            {{{ $post->created_at }}}
+        </x-slot>
+    </x-vista-post>
+    <div class="mb-6 bg-[#3366CC] rounded-3xl overflow-hidden">
+    @else
+    <p>algo salio muy mal</p>
+    @endif
+    </div>
+@endsection
+
+

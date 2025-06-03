@@ -1,6 +1,5 @@
-@extends('layouts.header')
-@yield('header')
-<body>
+@extends('layouts/base')
+@section('content')
     <div class="container flex justify-center m-16">
         <form action='{{route("createPost")}}' method="POST">
             @csrf
@@ -30,5 +29,4 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
-</body>
-</html>
+@endsection

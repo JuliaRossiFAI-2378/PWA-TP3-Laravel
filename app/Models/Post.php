@@ -16,9 +16,12 @@ class Post extends Model
     ];
     
     public function user(){
-        return $this->belongsTo(User::class, 'userId');
+        return $this->belongsTo(User::class);
     }
     public function category(){
-        return $this->belongsTo(Category::class, 'categoryId');
+        return $this->belongsTo(Category::class);
+    }
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
     }
 }

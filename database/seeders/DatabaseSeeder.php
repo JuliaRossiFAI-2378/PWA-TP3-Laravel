@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comentario;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -16,12 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
         $this->call([
             UserSeeder::class,
             CategorySeeder::class,
-            PostSeeder::class
+            PostSeeder::class,
+            ComentarioSeeder::class,
         ]);
     }
 }
