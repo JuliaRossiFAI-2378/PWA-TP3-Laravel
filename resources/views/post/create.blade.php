@@ -3,7 +3,7 @@
     <div class="flex justify-center bg-[#3366CC] rounded-xl m-6 ">
         <form action='{{route("createPost")}}' method="POST" class="w-full mx-6" >
             @csrf
-            <input type="hidden" name="user" id="user" value="2">
+            <input type="hidden" name="user" id="user" value="{{$user}}">
             <div class="mt-3">
                 <x-input-label for="title" :value="__('Titulo:')" />
                 <x-text-input id="title" class="block mt-1 w-full " type="text" name="title" placeholder="Ingrese el t&iacute;tulo"  required autofocus autocomplete="username" />
