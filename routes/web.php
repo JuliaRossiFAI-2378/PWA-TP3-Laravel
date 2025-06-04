@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ComentarioController;
 
 Route::get('/', [HomeController::class, 'getHome'])->name('home');
 
@@ -27,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('post/create', [CategoryController::class, 'getPostCreate'])->name('post');
     Route::post('post/create', [CategoryController::class, 'createPost'])->name('createPost');
     Route::get('/{category?}/create', [CategoryController::class, 'getCreate'])->name('create');
+    Route::post('/comentario', [ComentarioController::class, 'createComentario'])->name('createComentario');
+    Route::delete('/comentario/{comentario}', [ComentarioController::class, 'delete'])->name('deleteComentario');
 });
 
 

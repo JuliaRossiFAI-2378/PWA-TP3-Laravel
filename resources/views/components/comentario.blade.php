@@ -18,9 +18,13 @@
         </p>
 
         @can('delete', $comentario)
-            <x-boton href="" class="w-24 bg-[#FFBBCC] hover:bg-[#DE4444]">
-                {{ __('borrar') }}
-            </x-boton>
+            <form action="{{ route('deleteComentario', $comentario->id) }}" method="POST" class="inline">
+                @csrf
+                @method('DELETE')
+                <x-primary-button class="bg-[#FFBBCC] hover:bg-[#DE4444]">
+                    {{__('Borrar')}}
+                </x-primary-button>
+            </form>
         @endcan
     </div>
 </div>

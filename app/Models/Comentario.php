@@ -10,6 +10,8 @@ class Comentario extends Model
     /** @use HasFactory<\Database\Factories\ComentarioFactory> */
     use HasFactory;
 
+    protected $fillable = ['post_id', 'user_id', 'content'];
+    
     public function post(){
         return $this->belongsTo(Post::class);
     }

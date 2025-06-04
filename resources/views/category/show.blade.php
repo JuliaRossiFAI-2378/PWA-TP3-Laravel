@@ -20,9 +20,10 @@
     <div class="mb-6 bg-[#3366CC] rounded-3xl overflow-hidden">
     <p class="pl-4 py-4 font-bold text-2xl text-[#FFBBCC]" >Comentarios</p>
     @auth
-    <form action="{{ route('home', $post->id) }}" method="POST" class="m-6">
+    <form action="{{ route('createComentario') }}" method="POST" class="m-6">
         @csrf
-        <textarea name="content" rows="4" class="w-full p-2 rounded-md" placeholder="Deja un comentario..."></textarea>
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
+        <textarea required name="content" rows="4" class="w-full p-2 rounded-md" placeholder="Deja un comentario..."></textarea>
         <x-primary-button class="bg-cyan-400">
             Enviar comentario
         </x-primary-button>
