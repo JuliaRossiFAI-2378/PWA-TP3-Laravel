@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Mochizuki Honami',
             'email' => 'ichikakisser@example.com',
+            'image' => 'https://i.pinimg.com/originals/fc/60/62/fc60622ac3c047ba90d9adaba24325bd.jpg',
             'password' => Hash::make('password'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
@@ -23,6 +24,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Hoshino Ichika',
             'email' => 'honamikisser@example.com',
+            'image' => 'https://i.pinimg.com/originals/fc/60/62/fc60622ac3c047ba90d9adaba24325bd.jpg',
             'password' => Hash::make('password'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")

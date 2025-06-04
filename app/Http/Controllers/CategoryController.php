@@ -57,7 +57,8 @@ class CategoryController extends Controller
         $comentarios = Comentario::where('post_id', $idPost)->get();
         foreach($comentarios as $comentario){
             $usuario=$this->getUser($comentario->user_id);
-            $result[] = ['comentario' => $comentario, 'usuario'=>$usuario->name];
+            $imagen=$usuario->image;
+            $result[] = ['comentario' => $comentario, 'usuario'=>$usuario->name, 'imagen'=>$imagen];
         }
         return $result;
     }

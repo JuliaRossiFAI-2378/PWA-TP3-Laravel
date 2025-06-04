@@ -52,41 +52,40 @@
                                 </x-slot>
                             </x-dropdown>
                         @endauth
-                        <x-dropdown class="mr-12" >
-                          <x-slot name="trigger"  >
-                            <button class="text-white bg-[#3366CC] hover:bg-[#33CCBB]  h-12 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md focus:outline-none ease-in-out transition transform hover:translate-y-1 duration-200" >
-                            <div class="font-bold" >{{__('Grupos')}}</div>
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            </button>
-                          </x-slot >
-                          <x-slot name="content"  >
-                          <div class="bg-cyan-500 py-1 rounded-md ring-1 ring-black ring-opacity-5" >
-                            <x-dropdown-link href="{{route('index', ['category' => 'VirtualSinger'])}}" class="bg-[#00CCBB] hover:bg-cyan-500 font-bold" >
-                              VIRTUAL SINGER
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{route('index', ['category' => 'LeoNeed'])}}" class="bg-[#4455DD] hover:bg-cyan-500  font-bold" >
-                              Leo/Need
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{route('index', ['category' => 'MoreMoreJump!'])}}" class="bg-[#88DD44] hover:bg-cyan-500 font-bold" >
-                              MORE MORE JUMP!
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{route('index', ['category' => 'VividBADSQUAD'])}}" class="bg-[#EE1166] hover:bg-cyan-500 font-bold " >
-                              Vivid BAD SQUAD
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{route('index', ['category' => 'WonderlandsxShowtime'])}}" class="bg-[#FF9900] hover:bg-cyan-500 font-bold " >
-                              Wonderlands x Showtime
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{route('index', ['category' => '25-ji,NightcordDe.'])}}" class="bg-[#884499] hover:bg-cyan-500 font-bold " >
-                              25-ji, Nightcord de.
-                            </x-dropdown-link>
-                            </div>
-                          </x-slot>
+                        @php
+                            $colores = [ //Vsingers,leoneed,mmj,badsquad,wonderland,niigo
+                                'bg-[#00CCBB]',
+                                'bg-[#4455DD]',
+                                'bg-[#88DD44]',
+                                'bg-[#EE1166]',
+                                'bg-[#FF9900]',
+                                'bg-[#884499]',
+                            ];
+                        @endphp
+                        <x-dropdown class="mr-12">
+                            <x-slot name="trigger">
+                                <button class="text-white bg-[#3366CC] hover:bg-[#33CCBB] h-12 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md focus:outline-none ease-in-out transition transform hover:translate-y-1 duration-200">
+                                    <div class="font-bold">{{ __('Grupos') }}</div>
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                <div class="bg-cyan-500 py-1 rounded-md ring-1 ring-black ring-opacity-5">
+                                    @foreach($categorias as $index => $categoria)
+                                      <x-dropdown-link
+                                          href="{{ route('index', ['category' => str_replace(' ', '', $categoria->name)]) }}"
+                                          class="{{ $colores[$index % count($colores)] }} hover:bg-cyan-500 font-bold"
+                                      >
+                                          {{ $categoria->name }}
+                                      </x-dropdown-link>
+                                    @endforeach
+                                </div>
+                            </x-slot>
                         </x-dropdown>
-                      
                 </nav>
         </header>
         <div class="flex items-center justify-center w-full lg:grow">
@@ -94,9 +93,11 @@
                 <div >
                   @yield('mensaje')
                 </div>
-                <h1 class="font-bold text-4xl mb-6 bg-cyan-500 rounded-xl p-4 text-center" >
-                  @yield('subtitle')
-                </h1>
+                @hasSection('subtitle')
+                  <h1 class="font-bold text-4xl mb-6 bg-cyan-500 rounded-xl p-4 text-center text-[#FFBBCC]">
+                      @yield('subtitle')
+                  </h1>
+                @endif <!-- si, se cierra con un endif <|:-) -->
                   @yield('content')
                 </div>
             </main>

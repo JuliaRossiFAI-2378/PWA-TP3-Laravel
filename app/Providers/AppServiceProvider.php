@@ -7,6 +7,8 @@ use App\Models\Post;
 use App\Policies\PostPolicy;
 use App\Models\Comentario;
 use App\Policies\ComentarioPolicy;
+use App\Models\Category;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('layouts/base', function ($view) {
+        $view->with('categorias', Category::get());
+        });
     }
 
     protected $policies = [
