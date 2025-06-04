@@ -82,7 +82,7 @@ class CategoryController extends Controller
             $coments = $this->getComentarios($post->id);
             return view('category/show', ['user'=>$user->name, 'category' => str_replace(' ', '', $category->name), 'post' => $post , 'coments' => $coments, 'category' => $category]);
         }
-        return redirect('/')->with('error', 'No tenemos esa categoria!');
+        return redirect('/')->with('error', 'No tenemos ese post!');
     }
     public function getEditForm($category=null, $id=null){
         $category = $this->getCategory($category);
@@ -92,11 +92,11 @@ class CategoryController extends Controller
             try {
                 $this->authorize('update', $post);
             } catch (AuthorizationException) {
-                return redirect('/')->with('error', 'msj');
+                return redirect('/')->with('error', 'No se pudo editar :(');
             }
             return view('category/edit', ['category' => $category->name, 'post' => $post, 'user' => $user]);
         }
-        return redirect('/')->with('error', 'msj');
+        return redirect('/')->with('error', 'No tenemos ese post!');
     }
     public function update(Request $request){
         $post = $this->getPost($request->id);
