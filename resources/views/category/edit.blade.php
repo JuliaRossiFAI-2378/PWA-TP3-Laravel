@@ -3,7 +3,7 @@
 @section('content')
     <div class="mx-16" >
     @if(isset($category))
-    <x-edit-form :postImage="$post->imageLink" :post="$post" :user="$user">     
+    <x-edit-form :postImage="$post->imageLink" :post="$post" :user="$user->id">     
         <x-slot name="postTitle">
             {{{$post->title}}}
         </x-slot>

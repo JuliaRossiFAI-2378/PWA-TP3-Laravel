@@ -91,12 +91,13 @@ class CategoryController extends Controller
 
     public function getPostCreate(){
         $user = Auth::id();
-        return view('post.create', ['categories' => $this->getCategories(), 'user' => $user]);
+        return view('category.create', ['categories' => $this->getCategories(), 'user' => $user]);
     }
     public function getCreate($category=null){
         $category = $this->getCategory($category);
+        $user = Auth::id();
         if($category){
-            return view('category/create', ['category' => $category->name]);
+            return view('category/create', ['category' => $category->id, 'categories' => $this->getCategories(), 'user' => $user ]);
         }
         return redirect('/')->with('error', 'No tenemos esa categoria!');
     }

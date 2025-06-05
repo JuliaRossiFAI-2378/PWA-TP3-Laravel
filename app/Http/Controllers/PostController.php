@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -35,15 +36,11 @@ class PostController extends Controller
         return redirect()->route('index', ['category' => str_replace(' ', '', $category['name'])]);
     }
 
-    public function update(Request $request){
+    public function update(PostUpdateRequest $request){
         $post = $this->getPost($request->id);
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string|max:10000',
-            'imageLink' => 'nullable|string|max:500'
-        ]);
+        $data = $request->validated();
         if(empty($data['imageLink'])){
-            unset($data['imageLink']);
+            $data['imageLink']="https://somoskudasai.com/wp-content/uploads/2021/09/project-sekai-anime-kudasai.jpg";
         }
         $post->update($data);
         $category = new CategoryController();

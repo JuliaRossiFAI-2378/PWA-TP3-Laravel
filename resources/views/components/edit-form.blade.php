@@ -1,39 +1,32 @@
 @props(['postImage' => null, 'link' => '#', 'user', "post"])
 
-<div class="flex items-center justify-center w-full lg:grow">
-    <form action='{{route("editPost")}}' method="POST" >
+<div class="flex justify-center bg-[#3366CC] rounded-xl m-6 shadow-md shadow-gray-600">
+    <form action='{{route("editPost")}}' method="POST" class="w-full mx-6" >
         @csrf
         @method("PATCH")
-        <div 
-        class="flex flex-col p-6 rounded-3xl bg-[#3366CC] w-[20rem] lg:w-[30rem] min-h-96 max-h-96 mb-6 overflow-y-auto custom-scroll shadow-md shadow-gray-600"
-        >   
-
+            <x-text-input id="user" name="user" type="hidden" value="{{ $user }}" />
             <x-text-input id="id" name="id" type="hidden" value="{{ $post->id }}" /> 
             <x-text-input id="category" name="category" type="hidden" value="{{ $post->category }}" /> 
             
-            <div class="m-1">
-                <x-input-label for="imageLink">Link de la imagen: 
-                    <x-text-input id="imageLink" name="imageLink" type="text" value="{{ $postImage }}" /> 
-                </x-input-label>
-            </div>
-
-            <div class="m-1">
+            <div class="mt-3">
                 <x-input-label for="title">Titulo del post: 
-                    <x-text-input required id="title" name="title" type="text" value="{{ $postTitle }}" />
+                    <x-text-input required id="title" name="title" type="text" value="{{ $postTitle }}" class="block mt-1 w-full" />
                 </x-input-label>
             </div>
 
+            <div class="mt-3">
+                <x-input-label for="imageLink">Link de la imagen: 
+                    <x-text-input id="imageLink" name="imageLink" type="text" value="{{ $postImage }}" class="block mt-1 w-full" /> 
+                </x-input-label>
+            </div>
+            <div class="mt-3" >
             <x-input-label for="content">Contenido del post: </x-input-label>
-            <textarea required id='content' name='content' class='h-[15rem]'>{{ $postContent }}</textarea>
-            <div class="flex justify-end bottom-0 right-0 m-2">
-                <x-primary-button class="w-24 bg-[#FFBBCC] hover:bg-[#DE4444]">
+            <textarea required id='content' name='content' class="border-2 rounded-md p-4 h-96 w-full" >{{ $postContent }}</textarea>
+            </div>
+            <div class="flex items-center justify-end my-4">
+                <x-primary-button class="ms-3 bg-[#FFBBCC] hover:bg-[#DE4444]">
                     {{ __('enviar') }}
                 </x-primary-button>
             </div>
-            <h3 class="text-xl text-right text-gray-400 px-4">
-                creado por: <span class="font-bold text-xl text-black" >{{$user->name}}</span>
-            </h3>
-            <p class="text-right px-4 pb-4 text-gray-400" >{{$fecha}}</p>
-        </div>
     </form>
 </div>
