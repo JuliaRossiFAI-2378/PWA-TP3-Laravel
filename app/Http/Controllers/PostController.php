@@ -23,7 +23,7 @@ class PostController extends Controller
         return null;
     }
     public function getPostsByCategoria($idCategoria){
-        return Post::where('category', $idCategoria)->get();
+        return Post::where('category', $idCategoria)->where('habilitated', 1)->orderBy('created_at', 'desc')->get();
     }
     public function createPost(PostUpdateRequest $request){
         $data = $request->validated();

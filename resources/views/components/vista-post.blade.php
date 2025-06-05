@@ -32,7 +32,7 @@
         </div>
     @endcan
     <h3 class="text-xl text-right text-gray-400 px-4">
-       creado por: <span class="font-bold text-xl text-black" >{{$user}}</span>
+       creado por: <span class="font-bold text-xl text-[#FFBBCC]" >{{$user}}</span>
     </h3>
     <p class="text-right px-4 pb-4 text-gray-400" >{{$fecha}}</p>
 

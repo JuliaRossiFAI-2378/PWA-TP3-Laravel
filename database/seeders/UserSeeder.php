@@ -65,20 +65,12 @@ class UserSeeder extends Seeder
 
             // Leo/need
             [
-            'name' => 'Mochizuki Honami',
-            'email' => 'ichikakisser@example.com',
-            'image' => 'https://static.wikia.nocookie.net/projectsekai/images/1/1a/Honami_Kizuna_Rank.png',
-            'password' => Hash::make('password'),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-            ],
-            [
-            'name' => 'Hoshino Ichika',
-            'email' => 'honamikisser@example.com',
-            'image' => 'https://static.wikia.nocookie.net/projectsekai/images/7/72/Ichika_Kizuna_Rank.png',
-            'password' => Hash::make('password'),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
+                'name' => 'Hoshino Ichika',
+                'email' => 'honami@example.com',
+                'image' => 'https://static.wikia.nocookie.net/projectsekai/images/7/72/Ichika_Kizuna_Rank.png',
+                'password' => Hash::make('password'),
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
             ],
             [
                 'name' => 'Tenma Saki',
@@ -87,6 +79,14 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'name' => 'Mochizuki Honami',
+                'email' => 'ichika@example.com',
+                'image' => 'https://static.wikia.nocookie.net/projectsekai/images/1/1a/Honami_Kizuna_Rank.png',
+                'password' => Hash::make('password'),
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
             ],
             [
                 'name' => 'Hinomori Shiho',
