@@ -12,7 +12,9 @@ class Post extends Model
         'title',
         'content',
         'user',
-        'category'
+        'category',
+        'habilitated',
+        'imageLink'
     ];
     
     public function user(){

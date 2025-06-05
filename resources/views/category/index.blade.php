@@ -1,7 +1,11 @@
 @extends('layouts/base')
 
 @section('subtitle')
-{{{$category}}}:
+@if($subCategory == "LeoNeed")
+Leo/need
+@else
+{{{$subCategory}}}
+@endif
 @endsection
 @section('content')
 <div class="flex flex-wrap justify-center gap-6">

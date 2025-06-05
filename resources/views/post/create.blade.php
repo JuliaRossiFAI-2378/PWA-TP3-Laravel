@@ -23,6 +23,11 @@
                 </select>
             </div>
             <div class="mt-3">
+                <x-input-label for="imageLink" :value="__('Imagen (URL)')" />
+                <x-text-input id="imageLink" name="imageLink" class="block mt-1 w-full" type="text" :value="old('image')" placeholder="https://..." />
+                <x-input-error :messages="$errors->get('image')" class="mt-2" />
+            </div>
+            <div class="mt-3">
                 <x-input-label for="content" :value="__('Contenido:')" />
                 <textarea id='content' name='content' class='border-2 rounded-md p-4 h-96 w-full '></textarea>
             </div>  

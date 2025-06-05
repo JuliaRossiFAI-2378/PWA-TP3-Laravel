@@ -3,7 +3,7 @@
 @section('content')
     <div class="mx-16" >
     @if(isset($category))
-    <x-vista-post :postImage="$post->imageLink" :post="$post" >     
+    <x-vista-post :postImage="$post->imageLink" :post="$post" :category="$category">     
         <x-slot name="postTitle">
             {{{$post->title}}}
         </x-slot>
