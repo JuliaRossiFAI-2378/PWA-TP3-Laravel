@@ -15,8 +15,11 @@
 <h2>Grupo Piedra</h2>
 
 <h3>Integrantes:</h3>
+
 - Rossi Julia FAI-2378
+  
 - Lores Federico FAI-2948
+  
 
 ---
 
@@ -70,8 +73,8 @@ La base de datos está estructurada con las siguientes tablas
 <img src="public/images/codigo1.png"/>
 
 <div align="center">
-  <img src="public/images/codigo2.png" width="300">
-  <img src="public/images/codigo3.png" width="300">
+  <img src="public/images/codigo2.png" width="300" height="300">
+  <img src="public/images/codigo3.png" width="300" height="300">
 </div>
 
 ---
@@ -174,8 +177,6 @@ composer run dev
 ```bash
 http://127.0.0.1:8000/
 ```
-
-<br>
 o
 
 ```bash
