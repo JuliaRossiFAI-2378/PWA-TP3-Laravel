@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $post = new PostController();
         if($category){
             $listaPosts = $post->getPostsByCategoria($category->id);
-            return view('category/index', ['category' => str_replace(' ', '', $category->name), 'posts' => $listaPosts, 'subCategory' => $category->name]);
+            return view('category/index', ['category' => str_replace(' ', '', $category->name), 'descripcion' => $category->description , 'posts' => $listaPosts, 'subCategory' => $category->name]);
         }
         return redirect('/')->with('error', 'No tenemos esa categoria!');
     }

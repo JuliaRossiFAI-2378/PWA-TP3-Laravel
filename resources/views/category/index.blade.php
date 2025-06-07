@@ -2,14 +2,24 @@
 
 @section('subtitle')
 @if($subCategory == "LeoNeed")
-Leo/need
+        Leo/need
 @else
-{{{$subCategory}}}
+        {{{$subCategory}}}
 @endif
 @endsection
+
 @section('content')
 <div class="flex flex-wrap justify-center gap-6">
 @if(isset($category))
+<div class="flex flex-col bg-[#3366CC] rounded-xl m-6 p-6 min-w-full">
+    <p class="text-center font-bold text-2xl mb-6 text-white"> {{$descripcion}} </p>
+    <div class="self-end">
+        <x-boton href="{{ route('create', ['category' => $category]) }}" class="bg-[#33CCBB] hover:bg-cyan-500">
+            Crear post
+        </x-boton>
+    </div>
+</div>
+
 @if(count($posts)>0)
     @foreach($posts as $post)
         <x-contenido-post :postImage="$post->imageLink" :link="url($category.'/'.$post->id)" >

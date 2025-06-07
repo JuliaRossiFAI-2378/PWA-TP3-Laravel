@@ -6,19 +6,24 @@
             <input type="hidden" name="user" id="user" value="{{$user}}">
             <div class="mt-3">
                 <x-input-label for="title" :value="__('Titulo:')" />
-                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" placeholder="Ingrese el t&iacute;tulo"  required autofocus autocomplete="username" />
+                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" placeholder="Ingrese el t&iacute;tulo"  required autofocus />
             </div>
             <div class="mt-3">
                 <x-input-label for="category" :value="__('Categoria:')" />
-                <select name="category" id="category" class="rounded-md" >
+                <select name="category" id="category" class="rounded-md" @if(isset($category)) disabled @endif>
                     @if($categories != null)
                         @foreach ($categories as $item)
-                            <option value="{{ $item['id'] }}" @if(old('category', $category ?? '') == $item['id']) selected @endif >
-                                {{ $item['name'] == 'LeoNeed' ? 'Leo/need' : $item['name'] }}
-                            </option>
+                            @if(!isset($category) || $category == $item['id'])
+                                <option value="{{ $item['id'] }}" selected>
+                                    {{ $item['name'] == 'LeoNeed' ? 'Leo/need' : $item['name'] }}
+                                </option>
+                            @endif
                         @endforeach
                     @endif
                 </select>
+                @if(isset($category))
+                    <input type="hidden" name="category" value="{{ $category }}">
+                @endif
             </div>
             <div class="mt-3">
                 <x-input-label for="imageLink" :value="__('Imagen (URL)')" />
