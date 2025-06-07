@@ -15,8 +15,8 @@
 <h2>Grupo Piedra</h2>
 
 <h3>Integrantes:</h3>
--   Rossi Julia \[FAI-2378\]
--   Lores Federico \[FAI-2948\]
+- Rossi Julia \[FAI-2378\]
+- Lores Federico \[FAI-2948\]
 
 ---
 
@@ -27,36 +27,36 @@ La página es un blog personal sobre el juego project sekai colorful stage ft. H
 ---
 
 <h3>Estructura</h3>
-    La base de datos está estructurada con las siguientes tablas
-    <h4>Modelo</h4>
-    -Categories: Definen la estructura principal de la página.
-    -Users: Las personas registradas en la página.
-    -Posts: Creados por los usuarios.
-    -Comentarios: Creados por los usuarios, existen dentro de un post.
+La base de datos está estructurada con las siguientes tablas
+<h4>Modelo</h4>
+- Categories: Definen la estructura principal de la página.
+- Users: Las personas registradas en la página.
+- Posts: Creados por los usuarios.
+- Comentarios: Creados por los usuarios, existen dentro de un post.
 
 <img src="public/images/diagramaDeClases.png"/>         
 
 <h4>Controladores</h4>
-    -Home: método que busca y envía los datos necesarios al home.
-    -Categoría: métodos para buscar y enviar los datos necesarios de cada vista.
-    -Post: métodos para buscar, crear, actualizar y borrar lógicamente
-    -Comentario: métodos para buscar, crear y borrar comentarios.
-    -Profile: métodos para buscar, editar y borrar un usuario, creado por laravel.
-    -Auth: es una carpeta con varios controladores que manejan la lógica de registro de usuario, login y autenticación, creados por breeze.
+- Home: método que busca y envía los datos necesarios al home.
+- Categoría: métodos para buscar y enviar los datos necesarios de cada vista.
+- Post: métodos para buscar, crear, actualizar y borrar lógicamente
+- Comentario: métodos para buscar, crear y borrar comentarios.
+- Profile: métodos para buscar, editar y borrar un usuario, creado por laravel.
+- Auth: es una carpeta con varios controladores que manejan la lógica de registro de usuario, login y autenticación, creados por breeze.
 
 <h4>Páginas</h4>
-    -Home: Página principal, muestra los últimos 10 posts. Si hay errores en otras páginas redirigen a esta y muestra el mensaje de error.
-    -Category: Página creada dinámicamente según la base de datos. Muestra una categoría y todos sus posts, mostrando los últimos primero.
-    -Category/create: Formulario de creación de un post para una categoría específica. “post/create” cumple la misma función pero permite crear para cualquier categoría.
-    -Category/show: Acompañado de un id X, muestra el post con el id X.
-    -Category/edit: Acompañado de un id X, muestra el formulario para editar el post con el id X.
+- Home: Página principal, muestra los últimos 10 posts. Si hay errores en otras páginas redirigen a esta y muestra el mensaje de error.
+- Category: Página creada dinámicamente según la base de datos. Muestra una categoría y todos sus posts, mostrando los últimos primero.
+- Category/create: Formulario de creación de un post para una categoría específica. “post/create” cumple la misma función pero permite crear para cualquier categoría.
+- Category/show: Acompañado de un id X, muestra el post con el id X.
+- Category/edit: Acompañado de un id X, muestra el formulario para editar el post con el id X.
 
 <h3>Ejemplos de referencia del codigo</h3>
 <img src="public/images/codigo1.png"/>
 
 <div align="center">
-  <img src="public/images/codigo2.png" width="500">
-  <img src="public/images/codigo3.png" width="500">
+  <img src="public/images/codigo2.png" width="300">
+  <img src="public/images/codigo3.png" width="300">
 </div>
 
 ---
@@ -159,7 +159,10 @@ composer run dev
 ```bash
 http://127.0.0.1:8000/
 ```
+
 <br>
+o
+
 ```bash
 localhost:8000/
 ```
@@ -174,17 +177,12 @@ php artisan migrate:fresh --seed
 
 <h3>Mejoras Posibles</h3>
 
--Agregar un sistema de roles, donde se separen los permisos de un usuario normal y un administrador.
-
--Agregarle posibilidad a los administradores de crear, editar y borrar categorías. Aunque cargamos dinámicamente las categorías desde la base de datos, actualmente no hay manera de manejar su CRUD.
-
--Agregar verificación por correo.
-
--Agregar un layout diferente, junto con estilizado de cada elemento, para cada categoría.
-
--Agregar comentarios que responden a otros comentarios en vez del post.
-
--Agregar imágenes por defecto según la categoría.
+- Agregar un sistema de roles, donde se separen los permisos de un usuario normal y un administrador.
+- Agregarle posibilidad a los administradores de crear, editar y borrar categorías. Aunque cargamos dinámicamente las categorías desde la base de datos, actualmente no hay manera de manejar su CRUD.
+- Agregar verificación por correo.
+- Agregar un layout diferente, junto con estilizado de cada elemento, para cada categoría.
+- Agregar comentarios que responden a otros comentarios en vez del post.
+- Agregar imágenes por defecto según la categoría.
 
 
 
