@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
+            {{ __('Información del perfil') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -20,7 +20,7 @@
                      alt="{{ $user->name }}" />
             </div>
             <div class="flex-1">
-                <x-input-label for="image" :value="__('Image URL')" />
+                <x-input-label for="image" :value="__('Imagen (URL)')" />
                 <x-text-input id="image" name="image" type="text" class="mt-1 block w-full" 
                               :value="old('image', $user->image)" placeholder="https://..." />
                 <x-input-error class="mt-2" :messages="$errors->get('image')" />
@@ -29,20 +29,20 @@
 
         {{-- Campo name --}}
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nombre')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         {{-- Campo email --}}
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Correo')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button class="bg-[#33CCBB] hover:bg-sky-500">{{ __('Save') }}</x-primary-button>
+            <x-primary-button class="bg-[#33CCBB] hover:bg-sky-500">{{ __('Guardar') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p
